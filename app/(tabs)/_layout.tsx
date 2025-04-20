@@ -1,45 +1,87 @@
 import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { MaterialIcons } from '@expo/vector-icons';
+//import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+export default function Layout() {
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
+    <>
+      <StatusBar style="light" backgroundColor="#25292e" translucent />
+      <Tabs
+        screenOptions={{
+          headerShown: false,
+          tabBarStyle: {
+            backgroundColor: '#25292e',
+            borderTopWidth: 0,
           },
-          default: {},
-        }),
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarActiveTintColor: '#b9fbc0',
+          tabBarInactiveTintColor: '#c0c0c0',
+          tabBarLabelStyle: {
+            fontWeight: 'bold',
+            fontSize: 14,
+          },
         }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
+      >
+        {/* Home Tab */}
+        <Tabs.Screen
+          name="index" // Points to app/index.tsx
+          options={{
+            title: "Home",
+            tabBarIcon: ({ color, focused }) => (
+              <MaterialIcons
+                name={focused ? 'home' : 'home-filled'}
+                size={24}
+                color={color}
+              />
+            ),
+          }}
+        />
+
+        {/* ResNet Tab */}
+        <Tabs.Screen
+          name="resnet_index" // Points to app/resnet.tsx
+          options={{
+            title: "ResNet",
+            tabBarIcon: ({ color, focused }) => (
+              <MaterialIcons
+                name={focused ? 'image' : 'image-search'}
+                size={24}
+                color={color}
+              />
+            ),
+          }}
+        />
+
+        {/* YOLO Tab */}
+        <Tabs.Screen
+          name="yolo_index" // Points to app/yolo.tsx
+          options={{
+            title: "YOLO",
+            tabBarIcon: ({ color, focused }) => (
+              <MaterialIcons
+                name={focused ? 'center-focus-strong' : 'center-focus-weak'}
+                size={24}
+                color={color}
+              />
+            ),
+          }}
+        />
+
+        {/* LLM Tab */}
+        <Tabs.Screen
+          name="llm_index" // Points to app/llm.tsx
+          options={{
+            title: "LLM",
+            tabBarIcon: ({ color, focused }) => (
+              <MaterialIcons
+                name={focused ? 'chat' : 'chat-bubble-outline'}
+                size={24}
+                color={color}
+              />
+            ),
+          }}
+        />
+      </Tabs>
+    </>
   );
 }

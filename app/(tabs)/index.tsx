@@ -1,74 +1,71 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import React from 'react';
+import { View, Text, Image, StyleSheet } from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
-export default function HomeScreen() {
+export default function Home() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <View style={styles.container}>
+      <Text style={styles.header}>Welcome to Vision Demo 👁️</Text>
+      <Text style={styles.subHeader}>
+        Get ready to witness React Native flexing its muscles with ResNet, YOLO, and LLM – all in one app!
+      </Text>
+
+      <Text style={styles.description}>
+        It’s like giving your phone superpowers. 🤖 Want to see it predict, detect, and even tell stories? Keep reading.
+      </Text>
+
+      <Text style={styles.sectionHeader}>1️⃣ ResNet</Text>
+      <Text style={styles.sectionDescription}>
+        Want to see a computer “see” better than you? Check out ResNet for image magic.
+      </Text>
+
+      <Text style={styles.sectionHeader}>2️⃣ YOLO</Text>
+      <Text style={styles.sectionDescription}>
+        YOLO is here for super-accurate predictions! No cap. 🚀
+      </Text>
+
+      <Text style={styles.sectionHeader}>3️⃣ LLM</Text>
+      <Text style={styles.sectionDescription}>
+        LLM doesn’t just see – it tells stories. Yup, stories. 📖
+      </Text>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
+    backgroundColor: '#25292e',
+    padding: 20,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  header: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: '#b9fbc0',
+    marginBottom: 20,
+    marginTop:30,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  subHeader: {
+    fontSize: 18,
+    color: '#fff',
+    textAlign: 'left',
+    marginBottom: 15,
+  },
+  description: {
+    fontSize: 16,
+    color: '#c0c0c0',
+    textAlign: 'left',
+    marginBottom: 30,
+  },
+  sectionHeader: {
+    fontSize: 22,
+    color: '#fff',
+    fontWeight: 'bold',
+    marginTop: 20,
+  },
+  sectionDescription: {
+    fontSize: 16,
+    color: '#c0c0c0',
+    textAlign: 'left',
+    marginBottom: 10,
   },
 });
